@@ -1,16 +1,78 @@
 <!DOCTYPE html>
 <html lang="id">
   <head>
+    <!-- Meta Dasar -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
     <meta name="theme-color" content="#1a1a2e" />
-    <meta name="description" content="Quiz interaktif belajar hiragana dan katakana" />
-    <title>仮名 Quiz — Belajar Hiragana & Katakana</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Quiz interaktif belajar hiragana dan katakana dengan sistem penilaian real-time. 46 hiragana + 46 katakana, 3 kategori, latihan unlimited." />
+    <meta name="keywords" content="hiragana, katakana, japanese, kana, quiz, belajar bahasa jepang, pelajaran jepang" />
+    <meta name="author" content="Kana Quiz" />
+    <meta name="language" content="id" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kanaquiz-neon.vercel.app/" />
+    <meta property="og:title" content="仮名 Quiz — Belajar Hiragana & Katakana" />
+    <meta property="og:description" content="Quiz interaktif untuk menguasai hiragana dan katakana. Fitur kustomisasi, sistem penilaian real-time, dan interface yang user-friendly." />
+    <meta property="og:image" content="https://kanaquiz-neon.vercel.app/logo512.png" />
+    <meta property="og:site_name" content="仮名 Quiz" />
+    <meta property="og:locale" content="id_ID" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://kanaquiz-neon.vercel.app/" />
+    <meta property="twitter:title" content="仮名 Quiz — Belajar Hiragana & Katakana" />
+    <meta property="twitter:description" content="Quiz interaktif untuk belajar hiragana dan katakana dengan sistem penilaian real-time." />
+    <meta property="twitter:image" content="https://kanaquiz-neon.vercel.app/logo512.png" />
+    
+    <!-- PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="仮名 Quiz" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    
+    <!-- Favicon & Icons -->
+    <link rel="icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="logo192.png" />
+    <link rel="manifest" href="manifest.json" />
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://kanaquiz-neon.vercel.app" />
+    
+    <!-- Additional Links -->
+    <link rel="alternate" hrefLang="en" href="https://kanaquiz-neon.vercel.app/en" />
+    
+    <title>仮名 Quiz — Belajar Hiragana & Katakana</title>
   </head>
   <body>
-    <noscript>Aktifkan JavaScript untuk menggunakan aplikasi ini.</noscript>
+    <noscript>
+      <div style="display: flex; align-items: center; justify-content: center; height: 100vh; font-family: sans-serif; background: #1a1a2e; color: #faf8f3;">
+        <div style="text-align: center;">
+          <h1>仮名 Quiz</h1>
+          <p>Aktifkan JavaScript untuk menggunakan aplikasi ini.</p>
+          <p style="font-size: 0.9em; opacity: 0.7;">Please enable JavaScript to use this app.</p>
+        </div>
+      </div>
+    </noscript>
     <div id="root"></div>
+    
+    <!-- PWA Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('service-worker.js').catch(function(err) {
+            console.log('Service Worker registration failed: ', err);
+          });
+        });
+      }
+    </script>
   </body>
 </html>
