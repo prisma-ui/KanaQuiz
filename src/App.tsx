@@ -29,9 +29,6 @@ export default function App() {
   // Add app structured data (always called)
   useStructuredData(APP_STRUCTURED_DATA);
 
-  // Prepare structured data based on page
-  const structuredData = page === 'quiz' ? QUIZ_STRUCTURED_DATA : APP_STRUCTURED_DATA;
-
   const startQuiz = (cfg: { type?: string; category?: string; count: number }) => {
     setQuizConfig(cfg);
     setPage('quiz');
