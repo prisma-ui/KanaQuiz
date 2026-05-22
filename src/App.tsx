@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useSEO, useStructuredData, HOME_SEO, QUIZ_STRUCTURED_DATA, APP_STRUCTURED_DATA } from './hooks/useSEO';
 import Home from './pages/Home';
 import Quiz from './pages/Quiz';
 import Browse from './pages/Browse';
@@ -15,6 +16,23 @@ export default function App() {
     category?: string;
     count: number;
   } | null>(null);
+
+  // Setup SEO based on current page
+  useSEO(
+    page === 'home' ? HOME_SEO : {
+      title: '仮名 Quiz — Quiz',
+      description: 'Ikuti quiz untuk menguji kemampuan hiragana dan katakana Anda',
+      url: 'https://kanaquiz.vercel.app/'
+    }
+  );
+
+  // Add app structured data
+  useStructuredData(APP_STRUCTURED_DATA);
+
+  // Add quiz structured data when on quiz page
+  if (page === 'quiz') {
+    useStructuredData(QUIZ_STRUCTURED_DATA);
+  }
 
   const startQuiz = (cfg: { type?: string; category?: string; count: number }) => {
     setQuizConfig(cfg);
