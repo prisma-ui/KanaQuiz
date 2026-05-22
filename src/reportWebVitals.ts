@@ -1,4 +1,6 @@
-import { ReportHandler } from 'web-vitals';
+import { Metric } from 'web-vitals';
+
+export type ReportHandler = (metric: Metric) => void;
 
 const reportWebVitals = (onPerfEntry?: ReportHandler) => {
   if (onPerfEntry && onPerfEntry instanceof Function) {
