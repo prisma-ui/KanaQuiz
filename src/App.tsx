@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useSEO, useStructuredData, HOME_SEO, QUIZ_STRUCTURED_DATA, APP_STRUCTURED_DATA } from './hooks/useSEO';
+import { useSEO, useStructuredData, HOME_SEO, APP_STRUCTURED_DATA } from './hooks/useSEO';
 import Home from './pages/Home';
 import Quiz from './pages/Quiz';
 import Browse from './pages/Browse';
