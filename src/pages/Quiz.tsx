@@ -42,7 +42,7 @@ export default function Quiz({ config, onBack }: Props) {
         toast.error('Gagal memulai quiz. Cek koneksi ke API.');
         onBack();
       });
-  }, []);
+  }, [config.type, config.category, config.count, onBack]);
 
   const submitAnswer = useCallback(async (skip = false) => {
     if (!session) return;
@@ -62,18 +62,6 @@ export default function Quiz({ config, onBack }: Props) {
     }
   }, [session, currentIdx, answer]);
 
-  const nextCard = useCallback(() => {
-    if (!session) return;
-    setPendingFlip(false);
-    setLastResult(null);
-    if (currentIdx + 1 >= session.total_cards) {
-      finishQuiz();
-    } else {
-      setCurrentIdx(i => i + 1);
-      setTimeout(() => inputRef.current?.focus(), 100);
-    }
-  }, [session, currentIdx]);
-
   const finishQuiz = useCallback(async () => {
     if (!session) return;
     setPhase('loading');
@@ -90,6 +78,18 @@ export default function Quiz({ config, onBack }: Props) {
       setPhase('active');
     }
   }, [session]);
+
+  const nextCard = useCallback(() => {
+    if (!session) return;
+    setPendingFlip(false);
+    setLastResult(null);
+    if (currentIdx + 1 >= session.total_cards) {
+      finishQuiz();
+    } else {
+      setCurrentIdx(i => i + 1);
+      setTimeout(() => inputRef.current?.focus(), 100);
+    }
+  }, [session, currentIdx, finishQuiz]);
 
   const handleKey = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
@@ -232,7 +232,7 @@ function LoadingScreen() {
   useEffect(() => {
     const t = setInterval(() => setIdx(i => (i + 1) % LOADING_KANA.length), 400);
     return () => clearInterval(t);
-  }, []);
+  }, [LOADING_KANA.length]);
   return (
     <div className="loading-screen">
       <div className="loading-kana japanese-char">{LOADING_KANA[idx]}</div>
